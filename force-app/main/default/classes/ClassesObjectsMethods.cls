@@ -26,7 +26,7 @@
  * Math class: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_math.htm
  * Classes: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_understanding.htm
  *
- * @author Your Name
+ * @author David Bolding 
  */
 
 public with sharing class ClassesObjectsMethods {
@@ -40,17 +40,25 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<String> practiceStringMethods() {
         // Initialize a String with 'Hello, Salesforce!'
+        String helloSalesforce = 'Hello, Salesforce!';
         
-        // Get the length of the String        
+        // Get the length of the String 
+        Integer length = helloSalesforce.length();
+        String stringLength = String.valueOf(length);      
         // Get a substring of the String of the first 5 characters
+        String subString =  helloSalesforce.substring(0, 5);
         // Convert the String to lower case
+        String lowerCase = helloSalesforce.toLowerCase();
         
         // Return the list with the string data
         // In the first position add the string length
         // In the second position add the substring
         // In the third position add the string in lower case
 
-        return null; // Replace null with the variable you used to store the result
+        List<String> data = new List<String> {stringLength, subString, lowerCase};
+
+        System.debug(data);
+        return data; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -62,14 +70,30 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<Boolean> checkStringContent(String input) {
         // Initialize a list to store the results
+        List<Boolean> results = new List<Boolean>();       
         
         // Check if the string starts with 'Sales'
+        If(input.startsWith('Sales')){            
+          results.add(True);
+        }else {
+            results.add(False);
+        }
         
         // Check if the string ends with 'Force'
+        if(input.endsWith('Force')) {
+            results.add(True);
+        }else {
+            results.add(False);
+        }
         
         // Check if the string contains 'Awesome'
-        
-        return null; // Replace null with the variable you used to store the result
+        if(input.contains('Awesome')){
+            results.add(True);
+        }else {
+            results.add(False);
+        }
+        System.debug(results);
+        return results; 
     }
 
     /**
@@ -81,15 +105,17 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String removeDuplicateWords(String sentence) {
         // Split the sentence into words
+        List<String> splitWords = sentence.split(' ');
 
-        // Create a set to store the unique words
-
-        // Add each word to the set
-
-        // Join the unique words back into a sentence
+        // Create a set to store the unique words && // Add each word to the set
+        Set<String> words = new Set<String>(splitWords);           
+        
+        // Join the unique words back into a sentence       
+        String result = String.join(new List<String>(words), ' ');
 
         // Return the sentence with unique words
-        return null; // Replace null with the variable you used to store the result
+        System.debug(result);
+        return result; 
     }
 
     /**
@@ -101,17 +127,23 @@ public with sharing class ClassesObjectsMethods {
      * @return The number of vowels in the string.
      */
     public static Integer countVowels(String str) {
-        // Initialize the result Integer
-
-        /*
-        for () {
-            // get individual characters from the string - hint use substring or split
-            // check if the character is a vowel
-            // if it is a vowel, increment the result Integer
+        Integer vowelCount = 0;
+        
+        // Convert the string to lowercase for case insensitivity
+        str = str.toLowerCase();
+        
+        // Iterate through each character in the string
+        for (Integer i = 0; i < str.length(); i++) {
+            String ch = str.substring(i, i+1);
+            // Check if the character is a vowel
+            if ('aeiou'.contains(ch)) {
+                // If it is, increment the vowel count
+                vowelCount++;
+            }
         }
-        */
-
-        return null; // Replace null with the variable you used to store the result
+       
+        System.debug(vowelCount); 
+        return vowelCount; 
     }
 
     /**
@@ -126,16 +158,22 @@ public with sharing class ClassesObjectsMethods {
         List<String> scientistNames = new List<String>{'Tim Berners-Lee', 'Alan Turing', 'Grace Hopper', 'Donald Knuth', 'Guido van Rossum', 'Ken Thompson', 'Stephen Hawking'};
 
         // The variable to store the concatenated string
+         String scientists = '';
 
         // Loop through the list of scientists' names
 
-            // If the name doesn't contain the letter 'G', skip this iteration
+        For (String names : scientistNames) {
+            if (names.toLowerCase().contains('g')){
+                scientists += names+',';
+                
 
-            // Add the name to the result string, followed by a comma
+            }
 
-        // Remove the last comma from the result string
+        }
 
-        return null; // Replace null with the variable you used to store the result
+        System.debug(scientists.removeEnd(','));
+
+        return scientists.removeEnd(','); 
     }
 
     /**
@@ -148,11 +186,18 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Double calculateDifferenceOfSquares(Double a, Double b) {
         // Square the input numbers using the Math.pow() function
+        Integer exponent = 2;
+        a = Math.pow(a, exponent);
+        b = Math.pow(b, exponent);
+    
 
         // Calculate the absolute difference using Math.abs() function
+        Double diff = a - b;
+        diff = Math.abs(diff);
 
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        System.debug(diff);
+        return diff; // Replace null with the variable you used to store the result
     }
 
     /**

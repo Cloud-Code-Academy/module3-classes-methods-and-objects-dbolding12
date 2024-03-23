@@ -197,7 +197,7 @@ public with sharing class ClassesObjectsMethods {
 
         // Return the result
         System.debug(diff);
-        return diff; // Replace null with the variable you used to store the result
+        return diff; 
     }
 
     /**
@@ -208,9 +208,12 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Integer generateRandomNumber() {
         // Use Math class to generate number between 50 and 100
+        Double randomNumbers = Math.floor(Math.random() * (100 - 50 +1)) + 50;
+                
 
         // Return the random integer
-        return null; // Replace null with the variable you used to store the result
+        System.debug(randomNumbers.intValue());
+        return randomNumbers.intValue();
     }
 
     /**
@@ -221,11 +224,17 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String getCurrentDate() {
         // Get the todays date
-
+        TimeZone zone = UserInfo.getTimeZone();
+        Date dt = Date.today();
+                 
         // Format the current date
+        String formattedDate = dt.month() + '/' + dt.day() + '/' + dt.year();
+        
+        
 
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        
+        return formattedDate; // Replace null with the variable you used to store the result
     }
 
     /**

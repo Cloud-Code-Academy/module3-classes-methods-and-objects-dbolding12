@@ -228,13 +228,12 @@ public with sharing class ClassesObjectsMethods {
         Date dt = Date.today();
                  
         // Format the current date
-        String formattedDate = dt.month() + '/' + dt.day() + '/' + dt.year();
-        
+        String formattedDate = dt.month() + '/' + dt.day() + '/' + dt.year();        
         
 
         // Return the result
         
-        return formattedDate; // Replace null with the variable you used to store the result
+        return formattedDate; 
     }
 
     /**
